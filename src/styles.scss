@@ -115,7 +115,7 @@ hr {
 
 label,
 small {
-    color: #666662;
+    color: $white;
 }
 
 blockquote {
@@ -606,8 +606,8 @@ a.text-danger:focus {
 }
 
 .bg-pink {
-    background-color: #e91e63 !important;
-    color: $white;
+    background-color: #ffc0cb61 !important;
+    color:  #2f3b4f;    
 }
 
 .bg-pink .content .text,
@@ -788,6 +788,11 @@ a.text-danger:focus {
 .bg-black {
     background-color: #000000 !important;
     color: $white;
+}
+
+.bg-darkgrey{
+    background-color:  #2f3b4f;
+    color: $white !important;
 }
 
 .bg-black .content .text,
@@ -1184,6 +1189,10 @@ table thead tr td {
 // HEIGHTS
 .height-0 {
     height: 0px !important;
+}
+
+.height-100{
+    height: 100vh !important
 }
 
 // MARGINS
