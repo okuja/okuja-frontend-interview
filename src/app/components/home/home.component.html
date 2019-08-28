@@ -1,8 +1,32 @@
-<div>
-  <div>
-form
+<div fxLayout.lg = "Row" fxLayout.md="Column" fxLayout.sm="Column" fxLayout.xs="Column">
+  <div fxFlex="30%">
+    <div fxLayout="Column">
+      <div>Numbers</div>
+      <div>        
+        <form id="math_operation_form" [formGroup]="math_operation_form" (ngSubmit)="sendMathOperation(math_operation_form)">
+
+            <div class="field">
+                <label>Number One</label>
+                <input formControlName="number_one" name="number_one"  type="text">
+            </div>
+            <div class="field">
+                <label>Number Two</label>
+                <input formControlName="number_two" name="email"  type="email">
+            </div>
+            <div class="field">
+                <label>Operation</label>
+                <input formControlName="math_operation" name="math_operation"  type="text">
+
+            </div>           
+            <button type="submit" [disabled]="!send_message_form.valid" class="ui blue primary height-50 font-16 font-quicksand submit button">Post</button>
+        </form>
+      </div>
+
+    </div>
   </div>
-  <div>
-table
+  <div fxFlex="70%">
+    <div>
+  table    
+    </div>
   </div>
 </div>
