@@ -1,5 +1,5 @@
 <div class="height-100"  fxLayout.lg = "Row" fxLayout.md="Column" fxLayout.sm="Column" fxLayout.xs="Column" >
-    <div fxFlex="30%" class="bg-darkgrey padding-18">
+    <div fxFlex.lg="30%" fxFlex.sm=100% class="bg-darkgrey padding-18">
       <div fxLayout="Column" class="margin-left-10 margin-right-10">
         
         <div fxLayout="column"  >
@@ -8,11 +8,11 @@
   
               <div class="field" fxLayout="column">
                   <label>Number One</label>
-                  <input formControlName="number_one" name="number_one"  type="number" required>
+                  <input formControlName="number_one" name="number_one"  type="number" placeholder="Enter number one" maxlength="10" required>
               </div>
               <div class="field" fxLayout="column">
                   <label>Number Two</label>
-                  <input formControlName="number_two" name="email"  type="number" required>
+                  <input formControlName="number_two" name="email"  type="number" placeholder="Enter number two" maxlength="10" required>
               </div>
               <div class="field" fxLayout="column" fxLayoutAlign="start ">
                   <label>Operation</label>
@@ -28,12 +28,14 @@
               </div>              
           </form>
         </div>
+        <app-spinner *ngIf="isLoading"></app-spinner>
       </div>
     </div>
-    <div fxFlex="70%" class="bg-pink padding-18">
+    <div fxFlex.lg="70%" fxFlex.sm=100% class="bg-pink padding-18">
       
         <div fxLayout="column" class="margin-left-10 margin-right-10">
             <div><h2>Results</h2></div>
+
             <table class="table">
                 <thead>
                     <tr class="odd">
@@ -46,6 +48,7 @@
                     </tr>
                 </thead>
                 <tbody class="fontSize-xs">
+
                     <tr *ngFor="let item of all_math_operations; let i = index;
                 let isOdd=odd; let isEven=even" ngClass="isOdd?isOdd:isEven">
                         <td fxFlex="16%">
@@ -69,6 +72,11 @@
                             </div>                           
                         </td>
                     </tr>
+
+                    <tr *ngIf = "isError">
+                        <h1>{{error_message}}</h1>
+                    </tr>
+
                 </tbody>
             </table>
         </div>

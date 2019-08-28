@@ -14,7 +14,10 @@ export class HomeComponent implements OnInit {
   math_operation_form: FormGroup;
   all_math_operations: any[] = [];
   response: any;
-  math_response_operations: any
+  math_response_operations: any;
+  isLoading: boolean;
+  isError: boolean
+  error_message:any
 
   constructor(
     private form_builder: FormBuilder,
@@ -23,16 +26,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.math_operation_form = this.form_builder.group({
-      number_one:['',Validators.required],
-      number_two:['',Validators.required],
-      math_operation:['',Validators.required]
+      number_one:['',[Validators.required,Validators.maxLength(10)]],
+      number_two:['',[Validators.required,Validators.maxLength(10)]],
+      math_operation:["+" ? "+":'',Validators.required]
 
     });
   }
 
   sendMathOperation(form: FormGroup){
-
-    console.log(this.math_operation_form.value)
+    this.isLoading = true;
+   
     var form_number_one = form.value.number_one;
     var form_number_two = form.value.number_two;
     var form_math_operation = form.value.math_operation;
@@ -42,12 +45,11 @@ export class HomeComponent implements OnInit {
       "expr":expression,
       "precision": 14
     };
-
-    console.log(this.new_math_operation)
     
     this._homeService.post_math_operation(this.new_math_operation).subscribe(
       res =>{
-      console.log(res);
+      this.isLoading = false;
+      this.isError = false;
       this.response = res;
       var status:any
       var rounded_number = Math.round(Math.random());
@@ -56,15 +58,11 @@ export class HomeComponent implements OnInit {
       if (rounded_number == 1){
         var second_random_number = (Math.random())*4000;
         var ceiling_number = Math.ceil(second_random_number)
-        final_response = ceiling_number
-        console.log("Final Response in if  : "+final_response)        
+        final_response = ceiling_number        
       }
       else{
         final_response = this.response.result
-        console.log("Final Response in else  : "+final_response)
       }
-      console.log("Expression   : "+ eval(expression))
-
       if (final_response == eval(expression)){
         status = "yes"
       }
@@ -82,9 +80,12 @@ export class HomeComponent implements OnInit {
       }
 
       this.all_math_operations.push(this.math_response_operations)
-      console.log(this.all_math_operations)
+      
       },
       err => {
+        this.isLoading = false
+        this.isError =true
+        this.error_message = "Please check your internet connection"
         console.log(err);
       });  
 

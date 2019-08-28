@@ -1,0 +1,68 @@
+@import '../../../../styles';
+.notification-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+    z-index: 1001;
+    justify-content: center;
+    height: 0;
+}
+
+.notification-area {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    min-height: 35px;
+    box-sizing: border-box;
+    top: calc(50px - 1rem);
+    line-height: 2rem;
+    padding: 0 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-size: 12px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    z-index: 10001;
+    background: #ffffff;
+}
+
+.notification-area li {
+    text-align: left;
+}
+
+.notification-area.default {
+    background-color: $primary !important;
+    color: $white;
+}
+
+.notification-area i {
+    margin-right: 5px;
+}
+
+.notification-area #spinner {
+    margin: 1px 10px 0 0;
+}
+
+.notification-area #notification-big #spinner {
+    margin-top: 6px;
+}
+
+.notification-area #notification-message {
+    text-align: left;
+    line-height: 1.2em;
+    margin: 10px 0;
+}
+
+.notification-area #notification-message ul {
+    margin-bottom: 0;
+}
+
+.notification-area.notification-big #notification-message {
+    margin: 15px 0;
+}
+
+.notification-area .close {
+    padding: 5px 5px 5px 5px;
+    margin: 0 -10px 0 5px;
+    font-size: 1em;
+}
