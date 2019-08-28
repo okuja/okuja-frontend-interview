@@ -7,65 +7,67 @@
 
             <div class="field">
                 <label>Number One</label>
-                <input formControlName="number_one" name="number_one"  type="text">
+                <input formControlName="number_one" name="number_one"  type="text" required>
             </div>
             <div class="field">
                 <label>Number Two</label>
-                <input formControlName="number_two" name="email"  type="email">
+                <input formControlName="number_two" name="email"  type="email" required>
             </div>
             <div class="field">
                 <label>Operation</label>
-                <input formControlName="math_operation" name="math_operation"  type="text">
-
+                <select formControlName="math_operation" required>
+                    <option value="+">Add</option>
+                    <option  value="-">Subtract</option>
+                    <option  value="*">Multiply</option>
+                    <option  value="/">Divide</option>
+                </select>
+                <!-- <input formControlName="math_operation" name="math_operation"  type="text"> -->
             </div>           
-            <button type="submit" [disabled]="!send_message_form.valid" class="ui blue primary height-50 font-16 font-quicksand submit button">Post</button>
+            <button type="submit" [disabled]="!math_operation_form.valid" class="ui blue primary height-50 font-16 font-quicksand submit button">Post</button>
         </form>
       </div>
 
     </div>
   </div>
   <div fxFlex="70%">
-    <div>
-  table    
-    </div>
-
-
-    <div fxLayout="column">
-        <table class="table">
-            <thead>
-                <tr class="odd">
-                    <th fxFlex="16%">Number1</th>
-                    <th fxFlex="16%">Number2</th>
-                    <th fxFlex="17%">Response</th>                               
-                    <th fxFlex="17">Expected</th>
-                    <th fxFlex="17%">Passed</th>
-                    <th fxFlex="17">Remove</th>
-                </tr>
-            </thead>
-            <tbody class="fontSize-xs">
-                <tr *ngFor="let item of applications; let i = index;
-            let isOdd=odd; let isEven=even" ngClass="isOdd?isOdd:isEven">
-                    <td fxFlex="10%">
-                        {{item.type.data.name}}
-                    </td>
-                    <td fxFlex="5%">{{item.year}}</td>
-                    <td fxFlex="25%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">                        
-                    </td>                   
-
-                    <td fxFlex="">                       
-                    </td>
-                    <td fxFlex="15%" fxLayoutGap="10px" fxLayout="column">
-                        
-                    </td>
-                    <td fxFlex="15%" fxLayoutGap="10px" fxLayout="row" >                       
-                        <div>
-                            <button class="button button-black">View Details</button>
-                        </div>                            
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
+    <div>Results</div>
+      <div fxLayout="column">
+          <table class="table">
+              <thead>
+                  <tr class="odd">
+                      <th fxFlex="16%">Number1</th>
+                      <th fxFlex="16%">Number2</th>
+                      <th fxFlex="17%">Response</th>                               
+                      <th fxFlex="17%">Expected</th>
+                      <th fxFlex="17%">Passed</th>
+                      <th fxFlex="17%">Remove</th>
+                  </tr>
+              </thead>
+              <tbody class="fontSize-xs">
+                  <tr *ngFor="let item of all_math_operations; let i = index;
+              let isOdd=odd; let isEven=even" ngClass="isOdd?isOdd:isEven">
+                      <td fxFlex="16%">
+                          {{item.number_one}}
+                      </td>
+                      <td fxFlex="16%">{{item.number_two}}</td>
+                      <td fxFlex="17%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">  
+                          {{item.response}}                      
+                      </td>                   
+  
+                      <td fxFlex="17%"> 
+                        {{item.expected}}                      
+                      </td>
+                      <td fxFlex="17%" fxLayoutGap="10px" fxLayout="column">
+                          {{item.passed}}
+                      </td>
+                      <td fxFlex="17%" fxLayoutGap="10px" fxLayout="row" >                       
+                          <div>
+                              <button class="button button-black">View Details</button>
+                          </div>                            
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
   </div>
 </div>
