@@ -38,18 +38,6 @@ export class HomeComponent implements OnInit {
     var form_math_operation = form.value.math_operation;
     var expression = form_number_one + form_math_operation + form_number_two
 
-    // switch(form_math_operation){
-    //   case 'add':
-    //       break
-    //   case 'subtract':
-    //       break
-    //   case 'multiply':
-    //       break
-    //   case 'divide':
-    //       break  
-    // }
-
-
     this.new_math_operation = {
       "expr":expression,
       "precision": 14
@@ -61,28 +49,50 @@ export class HomeComponent implements OnInit {
       res =>{
       console.log(res);
       this.response = res;
+      var status:any
+      var rounded_number = Math.round(Math.random());
+      var final_response:any
+
+      if (rounded_number == 1){
+        var second_random_number = (Math.random())*4000;
+        var ceiling_number = Math.ceil(second_random_number)
+        final_response = ceiling_number
+        console.log("Final Response in if  : "+final_response)        
+      }
+      else{
+        final_response = this.response.result
+        console.log("Final Response in else  : "+final_response)
+      }
+      console.log("Expression   : "+ eval(expression))
+
+      if (final_response == eval(expression)){
+        status = "yes"
+      }
+      else{
+        status = "no"
+      }
+
+      
       this.math_response_operations = {
         number_one:form_number_one,
         number_two:form_number_two,
-        response:this.response.result,
-        expected:form_number_one,
-        passed:"yes"
+        response:final_response,
+        expected:eval(expression),
+        passed: status
       }
 
       this.all_math_operations.push(this.math_response_operations)
       console.log(this.all_math_operations)
-
-      // this.response_message = 'Your complaint has been successfully sent.';
-      // this.show_complaint_success_message = true;
-      // this.compliant_loading = false;
       },
       err => {
         console.log(err);
-      //   this.response_message = 'Check your internet connection and try again.';
-      //   this.show_complaint_error_message = true;
-      //  this.compliant_loading = false;
       });  
 
   }
+
+  deleteItem(i)
+ {  
+    this.all_math_operations.splice(i,1);  
+ }
 
 }

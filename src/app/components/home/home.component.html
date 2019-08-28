@@ -1,73 +1,76 @@
-<div fxLayout.lg = "Row" fxLayout.md="Column" fxLayout.sm="Column" fxLayout.xs="Column">
-  <div fxFlex="30%">
-    <div fxLayout="Column">
-      <div>Numbers</div>
-      <div>        
-        <form id="math_operation_form" [formGroup]="math_operation_form" (ngSubmit)="sendMathOperation(math_operation_form)">
-
-            <div class="field">
-                <label>Number One</label>
-                <input formControlName="number_one" name="number_one"  type="text" required>
-            </div>
-            <div class="field">
-                <label>Number Two</label>
-                <input formControlName="number_two" name="email"  type="email" required>
-            </div>
-            <div class="field">
-                <label>Operation</label>
-                <select formControlName="math_operation" required>
-                    <option value="+">Add</option>
-                    <option  value="-">Subtract</option>
-                    <option  value="*">Multiply</option>
-                    <option  value="/">Divide</option>
-                </select>
-                <!-- <input formControlName="math_operation" name="math_operation"  type="text"> -->
-            </div>           
-            <button type="submit" [disabled]="!math_operation_form.valid" class="ui blue primary height-50 font-16 font-quicksand submit button">Post</button>
-        </form>
-      </div>
-
-    </div>
-  </div>
-  <div fxFlex="70%">
-    <div>Results</div>
-      <div fxLayout="column">
-          <table class="table">
-              <thead>
-                  <tr class="odd">
-                      <th fxFlex="16%">Number1</th>
-                      <th fxFlex="16%">Number2</th>
-                      <th fxFlex="17%">Response</th>                               
-                      <th fxFlex="17%">Expected</th>
-                      <th fxFlex="17%">Passed</th>
-                      <th fxFlex="17%">Remove</th>
-                  </tr>
-              </thead>
-              <tbody class="fontSize-xs">
-                  <tr *ngFor="let item of all_math_operations; let i = index;
-              let isOdd=odd; let isEven=even" ngClass="isOdd?isOdd:isEven">
-                      <td fxFlex="16%">
-                          {{item.number_one}}
-                      </td>
-                      <td fxFlex="16%">{{item.number_two}}</td>
-                      <td fxFlex="17%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">  
-                          {{item.response}}                      
-                      </td>                   
+<div class="margin-40" fxLayout.lg = "Row" fxLayout.md="Column" fxLayout.sm="Column" fxLayout.xs="Column" >
+    <div fxFlex="30%">
+      <div fxLayout="Column">
+        
+        <div fxLayout="column"  >
+          <div>Numbers</div>        
+          <form fxLayout="column" fxLayoutGap="20px" id="math_operation_form" [formGroup]="math_operation_form" (ngSubmit)="sendMathOperation(math_operation_form)">
   
-                      <td fxFlex="17%"> 
-                        {{item.expected}}                      
-                      </td>
-                      <td fxFlex="17%" fxLayoutGap="10px" fxLayout="column">
-                          {{item.passed}}
-                      </td>
-                      <td fxFlex="17%" fxLayoutGap="10px" fxLayout="row" >                       
-                          <div>
-                              <button class="button button-black">View Details</button>
-                          </div>                            
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
+              <div class="field" fxLayout="column">
+                  <label>Number One</label>
+                  <input formControlName="number_one" name="number_one"  type="number" required>
+              </div>
+              <div class="field" fxLayout="column">
+                  <label>Number Two</label>
+                  <input formControlName="number_two" name="email"  type="number" required>
+              </div>
+              <div class="field" fxLayout="column" fxLayoutAlign="start ">
+                  <label>Operation</label>
+                  <select formControlName="math_operation" required>
+                      <option value="+">Add</option>
+                      <option  value="-">Subtract</option>
+                      <option  value="*">Multiply</option>
+                      <option  value="/">Divide</option>
+                  </select>                
+              </div>  
+              <div fxLayout="column">
+                <button type="submit" [disabled]="!math_operation_form.valid" class="ui blue primary height-50 font-16 font-quicksand submit button">Post</button>
+              </div>              
+          </form>
+        </div>
       </div>
-  </div>
+    </div>
+    <div fxFlex="70%">
+      
+        <div fxLayout="column" class="margin-left-60">
+            <div>Results</div>
+            <table class="table">
+                <thead>
+                    <tr class="odd">
+                        <th fxFlex="16%">Number1</th>
+                        <th fxFlex="16%">Number2</th>
+                        <th fxFlex="17%">Response</th>                               
+                        <th fxFlex="17%">Expected</th>
+                        <th fxFlex="17%">Passed</th>
+                        <th fxFlex="17%">Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="fontSize-xs">
+                    <tr *ngFor="let item of all_math_operations; let i = index;
+                let isOdd=odd; let isEven=even" ngClass="isOdd?isOdd:isEven">
+                        <td fxFlex="16%">
+                            {{item.number_one}}
+                        </td>
+                        <td fxFlex="16%">{{item.number_two}}</td>
+                        <td fxFlex="17%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">  
+                            {{item.response}}                      
+                        </td>                   
+    
+                        <td fxFlex="17%"> 
+                          {{item.expected}}                      
+                        </td>
+                        <td fxFlex="17%" fxLayoutGap="10px" fxLayout="column">
+                            {{item.passed}}
+                        </td>
+                        <td fxFlex="17%" fxLayoutGap="10px" fxLayout="row" >                       
+                            <div>
+                                <button mat-button class="button button-red" (click)="deleteItem(i)">Delete</button>
+                                <!-- <span class="clickable" (click)="deleteItem(i)"><i class="fa fa-trash"></i></span> -->
+                            </div>                           
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

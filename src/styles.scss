@@ -8,7 +8,6 @@
 
 @media (min-width: 40.0rem) {}
 
-
 /* Larger than tablet screen */
 
 @media (min-width: 80.0rem) {}
@@ -1192,6 +1191,18 @@ table thead tr td {
     margin: 10px !important;
 }
 
+.margin-20 {
+    margin: 20px !important;
+}
+
+.margin-30 {
+    margin: 30px !important;
+}
+
+.margin-40 {
+    margin: 40px !important;
+}
+
 .margin-top-10 {
     margin-top: 10px !important;
 }
@@ -1238,6 +1249,10 @@ table thead tr td {
 
 .margin-left-20 {
     margin-left: 20px;
+}
+
+.margin-left-60 {
+    margin-left: 60px !important;
 }
 
 .margin-right-10 {
