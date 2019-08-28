@@ -10,7 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class HomeComponent implements OnInit {
 
   new_math_operation:any;
-  math_operation_form: FormGroup
+  math_operation_form: FormGroup;
+  all_math_operations: any
 
   constructor(
     private form_builder: FormBuilder,
@@ -46,6 +47,7 @@ export class HomeComponent implements OnInit {
       "expr":"Send Operation"
     };
    
+    
   }
 
 }
